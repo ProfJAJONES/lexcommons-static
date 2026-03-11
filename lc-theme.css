@@ -1,0 +1,122 @@
+/* LexCommons Theme v3
+   Light mode default: white/linen page, navy nav/footer
+   Dark mode: navy wallpaper, framed cards
+   ================================================================== */
+
+:root {
+  --navy:    #0b1d3a;
+  --navy-md: #122444;
+  --gold:    #c9a84c;
+  --gold-dk: #a8893c;
+  --claret:  #8B4558;
+  --text:    #0f2a45;
+  --muted:   #4a5a72;
+}
+
+/* ══ LIGHT MODE (default) ══ */
+html.lc-light body { background: #f4f6f9 !important; }
+
+html.lc-light .hero {
+  background: linear-gradient(160deg, #edf2f9 0%, #f4f6f9 50%, #f0f4f0 100%) !important;
+}
+html.lc-light .hero-h1     { color: #0f2a45 !important; }
+html.lc-light .hero-h1 em  { color: var(--claret) !important; }
+html.lc-light .hero-sub    { color: #4a5a72 !important; }
+html.lc-light .hero-kicker { color: #0b1d3a !important; opacity: 0.6 !important; }
+html.lc-light .hero-kicker-line { background: #0b1d3a !important; opacity: 0.4 !important; }
+html.lc-light .hpc-name    { color: #0f2a45 !important; }
+html.lc-light .hero-product-chip { background: #fff !important; border-color: rgba(44,74,110,0.14) !important; }
+html.lc-light .btn-primary { background: var(--claret) !important; color: #fff !important; box-shadow: 0 4px 20px rgba(139,69,88,0.3) !important; }
+html.lc-light .btn-ghost   { color: #0b1d3a !important; border-color: rgba(11,29,58,0.35) !important; }
+html.lc-light .btn-ghost:hover { background: rgba(11,29,58,0.05) !important; }
+
+/* Light mode sections: natural linen/white, no framing needed */
+html.lc-light .products-section,
+html.lc-light .why-section,
+html.lc-light .audience-section { background: #f4f6f9 !important; }
+html.lc-light .products-section .section-inner,
+html.lc-light .why-section .section-inner,
+html.lc-light .audience-section .section-inner { background: transparent !important; box-shadow: none !important; border-radius: 0 !important; padding: 64px 24px !important; margin: 0 auto !important; }
+html.lc-light .cta-section { background: #f4f6f9 !important; }
+html.lc-light .cta-section .section-inner { background: #0b1d3a !important; border-radius: 20px !important; padding: 64px 48px !important; box-shadow: 0 4px 32px rgba(0,0,0,0.15) !important; }
+html.lc-light .cta-section .s-title { color: #fff !important; }
+html.lc-light .cta-section .s-desc  { color: rgba(255,255,255,0.72) !important; }
+html.lc-light .cta-section .s-eyebrow { color: var(--gold) !important; }
+html.lc-light .cta-section .s-eyebrow::before { background: var(--gold) !important; }
+html.lc-light .cta-section .btn-primary { background: var(--gold) !important; color: #0b1d3a !important; }
+
+/* Nav: navy in both modes */
+nav { background: rgba(11,29,58,0.97) !important; }
+.nav-cta { background: var(--gold) !important; color: #0b1d3a !important; }
+.nav-cta:hover { background: var(--gold-dk) !important; }
+
+/* Footer: navy in both modes (matches nav) */
+footer { background: #0b1d3a !important; color: rgba(255,255,255,0.6) !important; border-top: 1px solid rgba(255,255,255,0.08) !important; }
+footer a { color: rgba(255,255,255,0.6) !important; }
+footer a:hover { color: var(--gold) !important; }
+
+/* ══ DARK MODE ══ */
+html.lc-dark body { background: #0b1d3a !important; }
+html.lc-dark .hero,
+html.lc-dark section.hero { background: #0b1d3a !important; background-image: none !important; }
+html.lc-dark .hero-h1     { color: #ffffff !important; }
+html.lc-dark .hero-h1 em  { color: var(--gold) !important; }
+html.lc-dark .hero-sub    { color: rgba(255,255,255,0.78) !important; }
+html.lc-dark .hero-kicker { color: rgba(255,255,255,0.65) !important; opacity: 1 !important; }
+html.lc-dark .hero-kicker-line { background: rgba(255,255,255,0.35) !important; }
+html.lc-dark .hpc-name    { color: rgba(255,255,255,0.9) !important; }
+html.lc-dark .hpc-arrow   { color: rgba(255,255,255,0.4) !important; }
+html.lc-dark .hero-product-chip { background: rgba(255,255,255,0.09) !important; border-color: rgba(255,255,255,0.16) !important; }
+html.lc-dark .hero-product-chip:hover { background: rgba(255,255,255,0.15) !important; border-color: rgba(201,168,76,0.5) !important; }
+html.lc-dark .btn-primary { background: var(--gold) !important; color: #0b1d3a !important; box-shadow: 0 4px 24px rgba(201,168,76,0.35) !important; }
+html.lc-dark .btn-ghost   { color: rgba(255,255,255,0.88) !important; border-color: rgba(255,255,255,0.32) !important; }
+html.lc-dark .btn-ghost:hover { background: rgba(255,255,255,0.08) !important; }
+
+/* Dark mode: framed white cards on navy */
+html.lc-dark .products-section,
+html.lc-dark .why-section,
+html.lc-dark .audience-section { background: transparent !important; padding: 0 !important; }
+html.lc-dark .products-section .section-inner,
+html.lc-dark .why-section .section-inner,
+html.lc-dark .audience-section .section-inner {
+  background: #1a2a42 !important;
+  border-radius: 24px !important;
+  padding: 64px 56px !important;
+  box-shadow: 0 4px 40px rgba(0,0,0,0.25) !important;
+  margin: 40px auto !important;
+}
+html.lc-dark .s-title   { color: #ffffff !important; }
+html.lc-dark .s-desc    { color: rgba(255,255,255,0.65) !important; }
+html.lc-dark .s-eyebrow { color: var(--gold) !important; }
+html.lc-dark .s-eyebrow::before { background: var(--gold) !important; }
+html.lc-dark .cta-section { background: transparent !important; padding-bottom: 60px !important; }
+html.lc-dark .cta-section .section-inner { background: #0d1e36 !important; border-radius: 24px !important; padding: 72px 56px !important; box-shadow: 0 4px 32px rgba(0,0,0,0.3) !important; border: 1px solid rgba(255,255,255,0.08) !important; }
+html.lc-dark .cta-section .s-title { color: #fff !important; }
+html.lc-dark .cta-section .s-desc  { color: rgba(255,255,255,0.7) !important; }
+html.lc-dark .cta-section .s-eyebrow { color: var(--gold) !important; }
+html.lc-dark .cta-section .s-eyebrow::before { background: var(--gold) !important; }
+html.lc-dark footer { background: #071226 !important; }
+
+/* ── AUDIENCE SECTION light mode text fix ── */
+html.lc-light .audience-section .audience-title,
+html.lc-light .audience-section .ac-title { color: #0f2a45 !important; }
+html.lc-light .audience-section .audience-sub,
+html.lc-light .audience-section .ac-desc   { color: #4a5a72 !important; }
+html.lc-light .audience-section .ac-role   { opacity: 1 !important; }
+
+/* ── AUDIENCE SECTION bullet points light mode ── */
+html.lc-light .audience-section .ac-features li,
+html.lc-light .audience-section .ac-features span,
+html.lc-light .audience-section li,
+html.lc-light .audience-section .ac-list li { color: #0f2a45 !important; }
+html.lc-light .audience-section li::before,
+html.lc-light .audience-section .ac-dot { background: #0b1d3a !important; opacity: 0.5 !important; }
+
+/* ── AUDIENCE SECTION: light mode text + bullets ── */
+html.lc-light .audience-section .audience-title,
+html.lc-light .audience-section .ac-title   { color: #0f2a45 !important; }
+html.lc-light .audience-section .audience-sub,
+html.lc-light .audience-section .ac-desc    { color: #4a5a72 !important; }
+html.lc-light .audience-section .ac-role    { opacity: 1 !important; }
+html.lc-light .audience-section .ac-features li { color: #0f2a45 !important; }
+html.lc-light .audience-section .ac-dot     { background: #0b1d3a !important; opacity: 0.45 !important; }
