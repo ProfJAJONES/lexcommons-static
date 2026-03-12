@@ -1972,7 +1972,7 @@ ${blockHtml}
               )}
               {filteredPages.map(p => (
                 <tr key={p.id} style={{ borderBottom: "1px solid #1a1f2c" }}>
-                  <td style={{ padding: "11px 16px", fontSize: 15, fontWeight: 600, color: "#1A1A2E" }}>{p.title}</td>
+                  <td style={{ padding: "11px 16px", fontSize: 15, fontWeight: 600, color: "#1A1A2E" }}><a href={`https://${p.site}/${p.filename}`} target="_blank" rel="noopener noreferrer" style={{color:"#1A66CC",textDecoration:"none"}} onMouseEnter={e=>e.currentTarget.style.textDecoration="underline"} onMouseLeave={e=>e.currentTarget.style.textDecoration="none"}>{p.title}</a></td>
                   <td style={{ padding: "11px 16px", fontSize: 13, color: "#1A3668", fontFamily: "monospace" }}>{p.filename}</td>
                   <td style={{ padding: "11px 16px", fontSize: 13, color: "#6B7B8D" }}>{p.site}</td>
                   <td style={{ padding: "11px 16px", fontSize: 13, color: "#6B7B8D", whiteSpace: "nowrap" }}>
