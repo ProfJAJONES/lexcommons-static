@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LS Commons Home</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; }
+    body { margin: 0; font-family: 'Source Sans 3', 'Segoe UI', sans-serif; color: #1A1A2E; background: #fff; line-height: 1.6; }
+    .lc-container { max-width: 960px; margin: 0 auto; padding: 40px 24px; }
+    h1, h2, h3 { font-family: 'Libre Baskerville', Georgia, serif; }
+    a { color: #C9A84C; }
+    img { max-width: 100%; }
+    @media (max-width: 640px) {
+      section[style*="grid-template-columns"] { grid-template-columns: 1fr !important; }
+    }
+  </style>
+  <link rel="stylesheet" href="/lc-theme.css">
+</head>
+<body>
+<div class="lc-container">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Law School Commons — AI-Powered Study Tools for Law Students</title>
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+:root {
+  --claret:    #8B4558;
+  --claret-md: #9E5068;
+  --claret-lt: #D4728A;
+  --claret-pale: #f5e8ec;
+  --navy:      #1E4976;
+  --sage:      #3D6B5E;
+  --sage-lt:   #5BAF97;
+  --text:      #2d1f24;
+  --muted:     #5e4a50;
+  --linen:     #faf5f7;
+  --white:     #ffffff;
+  --border:    rgba(139,69,88,0.15);
+}
+body { font-family: 'DM Sans', sans-serif; background: var(--linen); color: var(--text); overflow-x: hidden; }
+
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+  height: 72px; padding: 0 48px;
+  display: flex; align-items: center;
+  background: rgba(30,73,118,0.97);
+  backdrop-filter: blur(16px);
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+.nav-logo { display: flex; align-items: center; gap: 12px; text-decoration: none; margin-right: auto; }
+.nav-logo-text { font-family: 'Lora', serif; font-weight: 700; font-size: 1.1rem; color: #fff; letter-spacing: -0.01em; }
+.nav-logo-text span { color: var(--claret-lt); }
+.nav-back { font-size: 0.8rem; color: rgba(255,255,255,0.6); text-decoration: none; display: flex; align-items: center; gap: 6px; transition: color 0.2s; }
+.nav-back:hover { color: #fff; }
+
+.hero {
+  min-height: 100vh; padding-top: 72px;
+  background: linear-gradient(160deg, #f5e8ec 0%, #faf5f7 60%, #f2eaee 100%);
+  display: grid; grid-template-columns: 1fr 1fr;
+  align-items: center;
+  position: relative; overflow: hidden;
+}
+.hero::before {
+  content: ''; position: absolute; top: -200px; right: -200px;
+  width: 600px; height: 600px; border-radius: 50%;
+  background: radial-gradient(circle, rgba(139,69,88,0.06) 0%, transparent 70%);
+}
+.hero-left { padding: 80px 60px 80px 80px; }
+.hero-right { padding: 80px 80px 80px 40px; display: flex; align-items: center; justify-content: center; }
+
+.hero-kicker {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: rgba(139,69,88,0.08); color: var(--claret);
+  font-size: 0.78rem; font-weight: 600; padding: 6px 16px;
+  border-radius: 100px; margin-bottom: 28px;
+  letter-spacing: 0.03em; text-transform: uppercase;
+}
+.kicker-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--claret); }
+.hero-h1 {
+  font-family: 'Lora', serif; font-size: 3rem; font-weight: 700;
+  line-height: 1.15; color: var(--navy); margin-bottom: 20px; letter-spacing: -0.02em;
+}
+.hero-h1 em { font-style: italic; color: var(--claret); }
+.hero-sub {
+  font-size: 1.05rem; line-height: 1.7; color: var(--muted);
+  margin-bottom: 32px; max-width: 480px;
+}
+.hero-features { display: flex; flex-direction: column; gap: 10px; }
+.hero-feature {
+  display: flex; align-items: center; gap: 10px;
+  font-size: 0.88rem; color: var(--text); font-weight: 500;
+}
+.hf-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--claret-lt); flex-shrink: 0; }
+
+.form-card {
+  background: var(--white); border-radius: 20px;
+  box-shadow: 0 12px 48px rgba(139,69,88,0.08), 0 2px 8px rgba(0,0,0,0.04);
+  padding: 40px 36px; width: 100%; max-width: 420px;
+  border: 1px solid rgba(139,69,88,0.08);
+}
+.form-card-eyebrow {
+  font-size: 0.72rem; font-weight: 600; text-transform: uppercase;
+  letter-spacing: 0.06em; color: var(--claret); margin-bottom: 6px;
+}
+.form-card-title { font-family: 'Lora', serif; font-weight: 700; font-size: 1.15rem; margin-bottom: 6px; color: var(--text); }
+.form-card-sub { font-size: 0.82rem; color: var(--muted); line-height: 1.5; margin-bottom: 24px; }
+.form-input {
+  width: 100%; padding: 11px 14px; border: 1.5px solid #e0d5d8;
+  border-radius: 10px; font-size: 0.88rem; outline: none;
+  font-family: 'DM Sans', sans-serif; margin-bottom: 12px;
+  transition: border-color 0.2s;
+}
+.form-input:focus { border-color: var(--claret); }
+.form-submit {
+  width: 100%; padding: 13px; border: none; border-radius: 10px;
+  background: var(--claret); color: #fff; font-weight: 600;
+  font-size: 0.92rem; cursor: pointer; font-family: inherit;
+  transition: background 0.2s;
+}
+.form-submit:hover { background: var(--claret-md); }
+.form-signup-link { text-align: center; margin-top: 16px; font-size: 0.82rem; color: var(--muted); }
+.form-signup-link a { color: var(--claret); font-weight: 600; text-decoration: none; }
+.form-forgot { text-align: right; margin-bottom: 16px; }
+.form-forgot a { font-size: 0.78rem; color: var(--muted); text-decoration: none; }
+.form-forgot a:hover { color: var(--claret); }
+.form-error {
+  display: none; background: #fef2f2; color: #991b1b;
+  padding: 10px; border-radius: 8px; font-size: 0.82rem;
+  margin-bottom: 16px; text-align: center;
+}
+.form-divider {
+  border-top: 1px solid #e8dfe2; margin-top: 20px; padding-top: 16px;
+  text-align: center;
+}
+.form-demo-btn {
+  width: 100%; padding: 12px; border: 2px solid var(--border);
+  border-radius: 10px; background: transparent; color: var(--claret);
+  font-weight: 600; font-size: 0.88rem; cursor: pointer;
+  font-family: inherit; transition: all 0.2s;
+}
+.form-demo-btn:hover { background: var(--claret-pale); border-color: var(--claret-lt); }
+
+.features-section {
+  padding: 100px 80px; background: var(--white);
+  border-top: 1px solid rgba(139,69,88,0.06);
+}
+.features-eyebrow {
+  text-align: center; font-size: 0.72rem; font-weight: 600;
+  text-transform: uppercase; letter-spacing: 0.08em;
+  color: var(--claret); margin-bottom: 12px;
+}
+.features-title {
+  font-family: 'Lora', serif; font-size: 2.1rem; font-weight: 700;
+  text-align: center; color: var(--navy); margin-bottom: 12px;
+}
+.features-sub { text-align: center; color: var(--muted); font-size: 0.95rem; margin-bottom: 60px; max-width: 560px; margin-left: auto; margin-right: auto; }
+.features-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; max-width: 1100px; margin: 0 auto; }
+.feature-card {
+  padding: 32px 28px; border-radius: 16px; border: 1px solid var(--border);
+  background: var(--linen); transition: all 0.25s;
+}
+.feature-card:hover { box-shadow: 0 8px 28px rgba(139,69,88,0.08); transform: translateY(-4px); }
+.feature-icon {
+  width: 44px; height: 44px; border-radius: 12px;
+  display: flex; align-items: center; justify-content: center;
+  margin-bottom: 16px; font-size: 1.2rem;
+}
+.feature-name { font-weight: 700; font-size: 0.95rem; margin-bottom: 8px; color: var(--text); }
+.feature-desc { font-size: 0.85rem; line-height: 1.6; color: var(--muted); }
+
+.quote-section {
+  padding: 60px 80px; text-align: center;
+  background: var(--linen);
+}
+.quote-text {
+  font-family: 'Lora', serif; font-style: italic;
+  font-size: 1.15rem; line-height: 1.7; color: var(--text);
+  max-width: 680px; margin: 0 auto 16px;
+}
+.quote-author { font-size: 0.82rem; color: var(--muted); }
+
+footer {
+  padding: 48px 80px; background: var(--navy);
+  display: flex; align-items: center; justify-content: space-between;
+  flex-wrap: wrap; gap: 20px;
+}
+.footer-brand { font-family: 'Lora', serif; font-weight: 700; color: #fff; font-size: 1rem; }
+.footer-links { display: flex; gap: 16px; }
+.footer-links a {
+  font-size: 0.78rem; color: rgba(255,255,255,0.5);
+  text-decoration: none; padding: 6px 14px;
+  border-radius: 100px; background: rgba(255,255,255,0.06);
+  transition: all 0.2s;
+}
+.footer-links a:hover { background: rgba(255,255,255,0.12); color: #fff; }
+.footer-copy { font-size: 0.75rem; color: rgba(255,255,255,0.35); }
+
+/* Signup modal */
+.modal-overlay {
+  display: none; position: fixed; inset: 0;
+  background: rgba(0,0,0,0.4); z-index: 300;
+  align-items: center; justify-content: center;
+}
+.modal-overlay.active { display: flex; }
+.modal-card {
+  background: #fff; border-radius: 20px; padding: 40px 36px;
+  max-width: 420px; width: 90%; max-height: 90vh; overflow-y: auto;
+  box-shadow: 0 16px 48px rgba(0,0,0,0.15);
+}
+.modal-title { font-family: 'Lora', serif; font-size: 1.2rem; font-weight: 700; color: var(--navy); margin-bottom: 4px; }
+.modal-sub { color: var(--muted); font-size: 0.82rem; margin-bottom: 24px; }
+
+@media (max-width: 900px) {
+  .hero { grid-template-columns: 1fr; }
+  .hero-left { padding: 60px 24px 30px; }
+  .hero-right { padding: 0 24px 60px; }
+  nav { padding: 0 20px; }
+  .features-section { padding: 60px 24px; }
+  .features-grid { grid-template-columns: 1fr; }
+  .quote-section { padding: 40px 24px; }
+  footer { padding: 32px 24px; flex-direction: column; text-align: center; }
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="https://lexcommons.org" class="nav-logo">
+    <span class="nav-logo-text">Law School <span>Commons</span></span>
+  </a>
+  <a href="https://legalcitationchecker.org" style="font-size:0.82rem;color:rgba(255,255,255,0.6);text-decoration:none;padding:6px 14px;border-radius:6px;transition:all 0.2s;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='rgba(255,255,255,0.6)'">CiteCommons</a>
+    <a href="https://classroom.lexcommons.org" style="display:inline-block;padding:4px 14px;border-radius:999px;background:rgba(255,255,255,0.12);border:1px solid rgba(255,255,255,0.5);color:rgba(255,255,255,0.85);font-size:0.8rem;font-family:sans-serif;text-decoration:none;white-space:nowrap;font-weight:500;">ClassroomCommons</a>
+    <a href="https://clinic.lexcommons.org" style="display:inline-block;padding:4px 14px;border-radius:999px;background:rgba(255,255,255,0.12);border:1px solid rgba(255,255,255,0.5);color:rgba(255,255,255,0.85);font-size:0.8rem;font-family:sans-serif;text-decoration:none;white-space:nowrap;font-weight:500;">ClinicCommons</a>
+    <a href="https://faculty.lexcommons.org" style="display:inline-block;padding:4px 14px;border-radius:999px;background:rgba(255,255,255,0.12);border:1px solid rgba(255,255,255,0.5);color:rgba(255,255,255,0.85);font-size:0.8rem;font-family:sans-serif;text-decoration:none;white-space:nowrap;font-weight:500;">FacultyCommons</a>
+    <a href="https://data.lexcommons.org" style="display:inline-block;padding:4px 14px;border-radius:999px;background:rgba(255,255,255,0.12);border:1px solid rgba(255,255,255,0.5);color:rgba(255,255,255,0.85);font-size:0.8rem;font-family:sans-serif;text-decoration:none;white-space:nowrap;font-weight:500;">Data Center</a>
+    <a href="https://admin.lexcommons.org" style="font-size:0.82rem;color:rgba(255,255,255,0.6);text-decoration:none;padding:6px 14px;border-radius:6px;transition:all 0.2s;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='rgba(255,255,255,0.6)'">AdminCommons</a><a href="#login-email" style="margin-left:8px;padding:9px 22px;background:transparent;border:1px solid rgba(255,255,255,0.4);color:#fff;border-radius:7px;font-weight:600;font-size:0.82rem;text-decoration:none;transition:all 0.2s;">Sign In</a><a href="https://lexcommons.org" class="nav-back">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+    Back to LexCommons
+  </a>
+</nav>
+
+<section class="hero">
+  <div class="hero-left">
+    <div class="hero-kicker">
+      <span class="kicker-dot"></span>
+      AI-Assisted Legal Study Tools
+    </div>
+    <h1 class="hero-h1">
+      Think critically.<br>Study <em>smarter.</em>
+    </h1>
+    <p class="hero-sub">
+      Law School Commons uses AI as a study companion — not a shortcut. Build deeper understanding of legal concepts through guided tutoring, adaptive practice, and tools that sharpen your analysis, not replace it.
+    </p>
+    <div class="hero-features">
+      <div class="hero-feature"><span class="hf-dot"></span>AI-guided explanations that build understanding, not dependence</div>
+      <div class="hero-feature"><span class="hf-dot"></span>Adaptive quizzes that strengthen critical thinking</div>
+      <div class="hero-feature"><span class="hf-dot"></span>Study materials that complement — never replace — your casebooks</div>
+      <div class="hero-feature"><span class="hf-dot"></span>Progress tracking to keep you accountable</div>
+      <div class="hero-feature"><span class="hf-dot"></span>Professor tools for guided, ethical AI integration</div>
+    </div>
+  </div>
+
+  <div class="hero-right">
+    <div class="form-card">
+      <div class="form-card-eyebrow">Law School Commons</div>
+      <div class="form-card-title">Sign in to your account</div>
+      <div class="form-card-sub">AI-assisted study tools that sharpen your legal thinking.</div>
+
+      <div id="login-error" class="form-error"></div>
+      <input id="login-email" type="email" class="form-input" placeholder="Email">
+      <input id="login-pass" type="password" class="form-input" placeholder="Password">
+      <div class="form-forgot"><a href="#" onclick="showForgot();return false;">Forgot password?</a></div>
+      <div style="margin:16px 0 4px;display:flex;flex-direction:column;gap:8px;">
+        <div style="display:flex;align-items:center;gap:10px;margin-bottom:4px;">
+          <div style="flex:1;height:1px;background:rgba(255,255,255,0.1);"></div>
+          <span style="font-size:0.72rem;color:var(--muted);text-transform:uppercase;letter-spacing:0.08em;font-family:sans-serif;">Or continue with</span>
+          <div style="flex:1;height:1px;background:rgba(255,255,255,0.1);"></div>
+        </div>
+        <a href="https://api.lexcommons.org/auth/google?origin=https://lawschoolcommons.com" style="display:flex;align-items:center;justify-content:center;gap:10px;padding:10px;background:#fff;border:1px solid #e0e0e0;border-radius:8px;text-decoration:none;font-size:0.85rem;font-weight:600;color:#3c3c3c;font-family:sans-serif;transition:box-shadow 0.2s;" onmouseover="this.style.boxShadow='0 2px 8px rgba(0,0,0,0.15)'" onmouseout="this.style.boxShadow='none'">
+          <svg width="18" height="18" viewBox="0 0 48 48"><path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/><path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/><path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/><path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.18 1.48-4.97 2.31-8.16 2.31-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/><path fill="none" d="M0 0h48v48H0z"/></svg>
+          Sign in with Google
+        </a>
+        <a href="https://api.lexcommons.org/auth/microsoft?origin=https://lawschoolcommons.com" style="display:flex;align-items:center;justify-content:center;gap:10px;padding:10px;background:#fff;border:1px solid #e0e0e0;border-radius:8px;text-decoration:none;font-size:0.85rem;font-weight:600;color:#3c3c3c;font-family:sans-serif;transition:box-shadow 0.2s;" onmouseover="this.style.boxShadow='0 2px 8px rgba(0,0,0,0.15)'" onmouseout="this.style.boxShadow='none'">
+          <svg width="18" height="18" viewBox="0 0 21 21"><rect x="1" y="1" width="9" height="9" fill="#f25022"/><rect x="11" y="1" width="9" height="9" fill="#00a4ef"/><rect x="1" y="11" width="9" height="9" fill="#7fba00"/><rect x="11" y="11" width="9" height="9" fill="#ffb900"/></svg>
+          Sign in with Microsoft
+        </a>
+      </div>
+      <button id="login-submit" class="form-submit">Sign In</button>
+
+      <div class="form-signup-link">
+        Don't have an account? <a href="#" id="signup-toggle">Create one free</a>
+      </div>
+
+      <div class="form-divider">
+        <button class="form-demo-btn" id="demo-btn">Explore the Demo</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div style="width:100%;margin:2.5rem 0;border-radius:14px;overflow:hidden;box-shadow:0 6px 32px rgba(0,0,0,0.11);"><img src="https://images.unsplash.com/photo-1562774053-701939374585?w=1400&q=80" alt="University campus" loading="lazy" style="width:100%;height:420px;object-fit:cover;display:block;"></div>
+<section class="features-section">
+  <div class="features-eyebrow">What's Inside</div>
+  <h2 class="features-title">AI as a tool, not a crutch.</h2>
+  <p class="features-sub">Every feature reinforces critical thinking and legal reasoning. AI handles the scaffolding so you can focus on the analysis.</p>
+  <div class="features-grid">
+    <div class="feature-card">
+      <div class="feature-icon" style="background:rgba(139,69,88,0.08);">🧠</div>
+      <div class="feature-name">AI Tutoring</div>
+      <div class="feature-desc">Ask questions and get guided explanations that help you reason through problems — not just hand you answers. Think Socratic method, powered by AI.</div>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon" style="background:rgba(30,73,118,0.08);">📝</div>
+      <div class="feature-name">Adaptive Quizzes</div>
+      <div class="feature-desc">Questions that adapt to where you need practice. AI identifies gaps in your reasoning so you can build stronger analytical foundations.</div>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon" style="background:rgba(61,107,94,0.08);">📚</div>
+      <div class="feature-name">Course Library</div>
+      <div class="feature-desc">Curated study materials that supplement your coursework. Organized by topic and difficulty — designed to reinforce, not replace, your reading.</div>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon" style="background:rgba(212,114,138,0.08);">📊</div>
+      <div class="feature-name">Progress Tracking</div>
+      <div class="feature-desc">Honest feedback on where you stand. Track mastery by topic so you know what needs more work — no false confidence.</div>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon" style="background:rgba(74,94,138,0.08);">👨‍🏫</div>
+      <div class="feature-name">Professor Tools</div>
+      <div class="feature-desc">Upload materials, guide AI-assisted study, and see how students engage. Built for professors who want AI to support learning, not undermine it.</div>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon" style="background:rgba(91,175,151,0.08);">✅</div>
+      <div class="feature-name">Citation Checker</div>
+      <div class="feature-desc">Integrated with CiteCommons. Because even with AI, getting citations right still matters.</div>
+    </div>
+  </div>
+<div style="width:100%;margin:2.5rem 0;border-radius:12px;overflow:hidden;box-shadow:0 6px 32px rgba(0,0,0,0.11);"><img src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?w=1400&q=80" alt="Law students studying together" style="width:100%;height:420px;object-fit:cover;display:block;"></div></section>
+
+<div style="width:100%;margin:2.5rem 0;border-radius:14px;overflow:hidden;box-shadow:0 6px 32px rgba(0,0,0,0.11);"><img src="https://images.unsplash.com/photo-1542621334-a254cf47733d?w=1400&q=80" alt="Student studying" loading="lazy" style="width:100%;height:360px;object-fit:cover;display:block;"></div>
+<section class="quote-section">
+  <div class="quote-text">"AI is only as good as the judgment behind it. LSCommons was built to make law students better thinkers — not to think for them."</div>
+  <div class="quote-author">— LexCommons, built by a law school survivor turned professor</div>
+</section>
+
+<footer>
+  <div class="footer-brand">LexCommons</div>
+  <div class="footer-links">
+    <a href="https://lawschoolcommons.com">LSCommons</a>
+    <a href="https://legalcitationchecker.org">CiteCommons</a>
+    <a href="https://admin.lexcommons.org">AdminCommons</a>
+  </div>
+  <div style="display:flex;gap:16px;margin-bottom:12px">
+      <a href="https://classroom.lexcommons.org" class="footer-product-chip" style="background:rgba(94,184,245,0.18); color:#7dcfff;">ClassroomCommons</a>
+      <a href="https://clinic.lexcommons.org" class="footer-product-chip" style="background:rgba(62,207,160,0.18); color:#4de8b4;">ClinicCommons</a>
+      <a href="https://faculty.lexcommons.org" class="footer-product-chip" style="background:rgba(224,144,80,0.18); color:#f0a060;">FacultyCommons</a>
+      <a href="https://data.lexcommons.org" class="footer-product-chip" style="background:rgba(168,126,224,0.18); color:#c09af0;">Data Center</a>
+      <a href="https://lexcommons.org/privacy" style="font-size:0.78rem;color:rgba(255,255,255,0.5);text-decoration:none">Privacy</a><a href="https://lexcommons.org/terms" style="font-size:0.78rem;color:rgba(255,255,255,0.5);text-decoration:none">Terms</a><a href="mailto:contact@lexcommons.org" style="font-size:0.78rem;color:rgba(255,255,255,0.5);text-decoration:none">Contact</a></div><div class="footer-copy">© 2026 LexCommons</div>
+</footer>
+
+<!-- Signup Modal -->
+<div class="modal-overlay" id="signup-modal">
+  <div class="modal-card">
+    <div class="modal-title">Create your account</div>
+    <div class="modal-sub">Start studying smarter — free for law students.</div>
+    <div id="signup-error" class="form-error"></div>
+    <input id="signup-name" type="text" class="form-input" placeholder="Full Name">
+    <input id="signup-email" type="email" class="form-input" placeholder="Email (.edu preferred)">
+    <input id="signup-pass" type="password" class="form-input" placeholder="Password (8+ characters)">
+    <input id="signup-profcode" type="text" class="form-input" placeholder="Professor code (leave blank if student)" style="color:#999;">
+    <button id="signup-submit" class="form-submit">Create Account</button>
+    <div class="form-signup-link">Already have an account? <a href="#" id="signup-close">Sign in</a></div>
+  </div>
+</div>
+
+<script>
+(function(){
+  // Check if already logged in
+  fetch('/api/auth/me', {credentials:'same-origin'}).then(function(r){return r.json()}).then(function(data){
+    if(data.user && data.user.id) window.location.href = '/app';
+  }).catch(function(){});
+
+  // Login
+  document.getElementById('login-submit').addEventListener('click', function(){
+    var email = document.getElementById('login-email').value;
+    var pass = document.getElementById('login-pass').value;
+    var errEl = document.getElementById('login-error');
+    if(!email || !pass){ errEl.textContent='Enter email and password'; errEl.style.display='block'; return; }
+    this.textContent = 'Signing in...';
+    errEl.style.display = 'none';
+    fetch('/api/auth/login', {
+      method:'POST', headers:{'Content-Type':'application/json'}, credentials:'same-origin',
+      body: JSON.stringify({email:email, password:pass})
+    }).then(function(r){return r.json()}).then(function(data){
+      document.getElementById('login-submit').textContent = 'Sign In';
+      if(data.error){ errEl.textContent=data.error; errEl.style.display='block'; return; }
+      window.location.href = '/app';
+    }).catch(function(){ document.getElementById('login-submit').textContent='Sign In'; errEl.textContent='Connection error'; errEl.style.display='block'; });
+  });
+  document.getElementById('login-pass').addEventListener('keydown', function(e){ if(e.key==='Enter') document.getElementById('login-submit').click(); });
+
+  // Demo button
+  document.getElementById('demo-btn').addEventListener('click', function(){
+    window.location.href = '/app';
+  });
+
+  // Signup modal
+  var modal = document.getElementById('signup-modal');
+  document.getElementById('signup-toggle').addEventListener('click', function(e){ e.preventDefault(); modal.classList.add('active'); });
+  document.getElementById('signup-close').addEventListener('click', function(e){ e.preventDefault(); modal.classList.remove('active'); });
+  modal.addEventListener('click', function(e){ if(e.target===modal) modal.classList.remove('active'); });
+
+  // Signup
+  document.getElementById('signup-submit').addEventListener('click', function(){
+    var name = document.getElementById('signup-name').value;
+    var email = document.getElementById('signup-email').value;
+    var pass = document.getElementById('signup-pass').value;
+    var profCode = document.getElementById('signup-profcode').value;
+    var errEl = document.getElementById('signup-error');
+    if(!name||!email||!pass){ errEl.textContent='All fields are required'; errEl.style.display='block'; return; }
+    if(pass.length<8){ errEl.textContent='Password must be 8+ characters'; errEl.style.display='block'; return; }
+    this.textContent = 'Creating account...';
+    errEl.style.display = 'none';
+    fetch('/api/auth/register', {
+      method:'POST', headers:{'Content-Type':'application/json'}, credentials:'same-origin',
+      body: JSON.stringify({email:email, password:pass, full_name:name, profCode:profCode})
+    }).then(function(r){return r.json()}).then(function(data){
+      document.getElementById('signup-submit').textContent = 'Create Account';
+      if(data.error){ errEl.textContent=data.error; errEl.style.display='block'; return; }
+      modal.classList.remove('active');
+      fetch('/api/auth/login', {
+        method:'POST', headers:{'Content-Type':'application/json'}, credentials:'same-origin',
+        body: JSON.stringify({email:email, password:pass})
+      }).then(function(r){return r.json()}).then(function(d){
+        if(!d.error) window.location.href = '/app';
+        else { document.getElementById('login-email').value=email; var e=document.getElementById('login-error'); e.textContent='Account created! Sign in above.'; e.style.display='block'; e.style.background='#ecfdf5'; e.style.color='#065f46'; }
+      });
+    }).catch(function(){ document.getElementById('signup-submit').textContent='Create Account'; errEl.textContent='Connection error'; errEl.style.display='block'; });
+  });
+})();
+</script>
+<script src="/lc-widgets.js"></script>
+<script>(function(){var p=new URLSearchParams(window.location.search);var t=p.get("sso_token");if(!t)return;try{var b=t.split(".")[1].replace(/-/g,"+").replace(/_/g,"/");var d=JSON.parse(atob(b));var R={4:"administrator",3:"manager",2:"faculty",1:"user"};var u={id:d.id,name:((d.firstName||"")+" "+(d.lastName||"")).trim()||d.email,email:d.email,role:R[d.role]||"user",token:t,lastLogin:new Date().toISOString().slice(0,10),site:"all",active:true};localStorage.setItem("lc_user",JSON.stringify(u));window.history.replaceState({}|""|window.location.pathname);window.location.href="/app";}catch(e){console.error(e);}})();</script>  <div id="forgot-overlay" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.5);z-index:999;align-items:center;justify-content:center;"><div style="background:#fff;border-radius:12px;padding:36px;width:100%;max-width:380px;margin:20px;"><h3 style="margin:0 0 8px;color:#0b1d3a;font-size:18px;font-weight:800;">Reset your password</h3><p style="margin:0 0 20px;color:#6B7B8D;font-size:14px;">Enter your email and we will send a reset link.</p><div id="forgot-error" style="display:none;background:#fef2f2;color:#B91C1C;border-radius:6px;padding:10px 12px;font-size:14px;margin-bottom:12px;"></div><div id="forgot-success" style="display:none;background:#f0fdf4;color:#2D8B55;border-radius:6px;padding:10px 12px;font-size:14px;margin-bottom:12px;">Check your email for a reset link.</div><input id="forgot-email" type="email" placeholder="your@email.com" style="width:100%;padding:10px 12px;background:#FAF6EE;border:1px solid #252c3a;border-radius:6px;color:#1A1A2E;font-size:15px;box-sizing:border-box;margin-bottom:16px;"><button onclick="submitForgot()" id="forgot-btn" style="width:100%;padding:10px;background:#C9A84C;color:#fff;border:none;border-radius:6px;font-size:15px;font-weight:700;cursor:pointer;margin-bottom:12px;">Send Reset Link</button><button onclick="hideForgot()" style="width:100%;padding:8px;background:none;border:1px solid #ddd;border-radius:6px;font-size:14px;color:#6B7B8D;cursor:pointer;">Cancel</button></div></div>
+  <script>
+    function showForgot(){document.getElementById("forgot-overlay").style.display="flex";document.getElementById("forgot-email").focus();}
+    function hideForgot(){document.getElementById("forgot-overlay").style.display="none";document.getElementById("forgot-error").style.display="none";document.getElementById("forgot-success").style.display="none";document.getElementById("forgot-btn").disabled=false;document.getElementById("forgot-btn").textContent="Send Reset Link";}
+    document.addEventListener("keydown",function(e){if(e.key==="Escape")hideForgot();});
+  </script></body>
+</html>
+
+</div>
+<script src="/lc-widgets.js"></script>
+</body>
+</html>
