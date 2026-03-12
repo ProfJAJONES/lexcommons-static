@@ -3662,6 +3662,33 @@ function AccountSettingsPage({ currentUser, token, darkMode, toggleDark, dyslexi
   const [saving, setSaving] = useState(false);
   const [saved, setSaved] = useState(false);
   const [saveError, setSaveError] = useState("");
+  const [showPwForm, setShowPwForm] = useState(false);
+  const [currentPw, setCurrentPw] = useState("");
+  const [newPw, setNewPw] = useState("");
+  const [confirmPw, setConfirmPw] = useState("");
+  const [pwSaving, setPwSaving] = useState(false);
+  const [pwSaved, setPwSaved] = useState(false);
+  const [pwError, setPwError] = useState("");
+
+  const handlePasswordChange = async () => {
+    setPwError("");
+    if (!currentPw) return setPwError("Enter your current password.");
+    if (newPw.length < 8) return setPwError("New password must be at least 8 characters.");
+    if (newPw !== confirmPw) return setPwError("Passwords do not match.");
+    setPwSaving(true);
+    try {
+      const res = await fetch(`${API_URL}/api/users/${currentUser.id}/password`, {
+        method: "PUT",
+        headers: { "Content-Type": "application/json", Authorization: `Bearer ${token}` },
+        body: JSON.stringify({ currentPassword: currentPw, newPassword: newPw })
+      });
+      if (!res.ok) { const d = await res.json(); throw new Error(d.error || "Failed"); }
+      setPwSaved(true);
+      setCurrentPw(""); setNewPw(""); setConfirmPw("");
+      setTimeout(() => { setPwSaved(false); setShowPwForm(false); }, 2000);
+    } catch(e) { setPwError(e.message); }
+    finally { setPwSaving(false); }
+  };
   const initials = (currentUser.name || "?").split(" ").map(n => n[0]).join("").slice(0,2).toUpperCase();
 
   const handleSave = async () => {
@@ -3775,10 +3802,36 @@ function AccountSettingsPage({ currentUser, token, darkMode, toggleDark, dyslexi
             <div style={{ fontSize: 15, fontWeight: 600, color: "#1A1A2E" }}>Password</div>
             <div style={{ fontSize: 13, color: "#6B7B8D" }}>Change your account password</div>
           </div>
-          <a href="#users" style={{ fontSize: 13, color: "#C9A84C", textDecoration: "underline", cursor: "pointer" }}>
-            Change in Users → Edit Profile
-          </a>
+          <button onClick={() => { setShowPwForm(v => !v); setPwError(""); setPwSaved(false); }}
+            style={{ fontSize: 13, color: "#C9A84C", background: "none", border: "none", cursor: "pointer", textDecoration: "underline", padding: 0 }}>
+            {showPwForm ? "Cancel" : "Change Password"}
+          </button>
         </div>
+        {showPwForm && (
+          <div style={{ marginTop: 16, borderTop: "1px solid #E8E4DA", paddingTop: 16 }}>
+            {pwError && <div style={{ background: "#fef2f2", color: "#B91C1C", borderRadius: 6, padding: "8px 12px", fontSize: 13, marginBottom: 12 }}>{pwError}</div>}
+            {pwSaved && <div style={{ background: "#f0fdf4", color: "#2D8B55", borderRadius: 6, padding: "8px 12px", fontSize: 13, marginBottom: 12 }}>Password changed successfully.</div>}
+            <div style={{ marginBottom: 10 }}>
+              <label style={{ fontSize: 13, color: "#6B7B8D", display: "block", marginBottom: 4 }}>Current Password</label>
+              <input type="password" value={currentPw} onChange={e => { setCurrentPw(e.target.value); setPwError(""); }}
+                style={{ width: "100%", padding: "9px 12px", background: "#FAF6EE", border: "1px solid #D4CFC0", borderRadius: 6, fontSize: 14, boxSizing: "border-box" }} />
+            </div>
+            <div style={{ marginBottom: 10 }}>
+              <label style={{ fontSize: 13, color: "#6B7B8D", display: "block", marginBottom: 4 }}>New Password</label>
+              <input type="password" value={newPw} onChange={e => { setNewPw(e.target.value); setPwError(""); }}
+                style={{ width: "100%", padding: "9px 12px", background: "#FAF6EE", border: "1px solid #D4CFC0", borderRadius: 6, fontSize: 14, boxSizing: "border-box" }} />
+            </div>
+            <div style={{ marginBottom: 14 }}>
+              <label style={{ fontSize: 13, color: "#6B7B8D", display: "block", marginBottom: 4 }}>Confirm New Password</label>
+              <input type="password" value={confirmPw} onChange={e => { setConfirmPw(e.target.value); setPwError(""); }}
+                style={{ width: "100%", padding: "9px 12px", background: "#FAF6EE", border: "1px solid #D4CFC0", borderRadius: 6, fontSize: 14, boxSizing: "border-box" }} />
+            </div>
+            <button onClick={handlePasswordChange} disabled={pwSaving}
+              style={{ padding: "9px 20px", background: "#0B1D3A", color: "#fff", border: "none", borderRadius: 6, fontSize: 14, fontWeight: 600, cursor: pwSaving ? "wait" : "pointer" }}>
+              {pwSaving ? "Saving..." : "Update Password"}
+            </button>
+          </div>
+        )}
       </div>
     </div>
   );
