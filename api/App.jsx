@@ -3402,6 +3402,75 @@ jobs:
 
 const API_URL = "https://api.lexcommons.org";
 
+
+function ResetPasswordScreen({ token, darkMode, onDone }) {
+  const [password, setPassword]   = useState("");
+  const [confirm, setConfirm]     = useState("");
+  const [loading, setLoading]     = useState(false);
+  const [error, setError]         = useState("");
+  const [success, setSuccess]     = useState(false);
+
+  const handleReset = async () => {
+    if (!password || !confirm) { setError("Please fill in both fields."); return; }
+    if (password !== confirm)  { setError("Passwords do not match."); return; }
+    if (password.length < 8)   { setError("Password must be at least 8 characters."); return; }
+    setLoading(true); setError("");
+    try {
+      const res  = await fetch(`${API_URL}/api/forgot-password/reset`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ token, password }),
+      });
+      const data = await res.json();
+      if (!res.ok) { setError(data.error || "Reset failed."); return; }
+      setSuccess(true);
+      setTimeout(() => { window.history.replaceState({}, "", "/app"); window.location.reload(); }, 2000);
+    } catch { setError("Could not reach the server. Please try again."); }
+    finally { setLoading(false); }
+  };
+
+  const bg  = darkMode ? "#0f1923" : "#FAF6EE";
+  const card = darkMode ? "#1a2535" : "#ffffff";
+
+  return (
+    <div style={{ minHeight: "100vh", background: bg, display: "flex", alignItems: "center", justifyContent: "center", fontFamily: "Source Sans 3, Segoe UI, sans-serif" }}>
+      <div style={{ background: card, borderRadius: 12, padding: "40px 36px", width: "100%", maxWidth: 400, boxShadow: "0 4px 24px rgba(0,0,0,0.12)" }}>
+        <div style={{ textAlign: "center", marginBottom: 28 }}>
+          <div style={{ fontSize: 28, marginBottom: 8 }}>🔐</div>
+          <h2 style={{ fontSize: 22, fontWeight: 800, color: "#0B1D3A", margin: 0 }}>Set new password</h2>
+          <p style={{ color: "#6B7B8D", fontSize: 14, marginTop: 6 }}>Enter your new password below.</p>
+        </div>
+        {success ? (
+          <div style={{ textAlign: "center", color: "#2D8B55", fontWeight: 600, fontSize: 15 }}>
+            ✓ Password updated! Redirecting to login…
+          </div>
+        ) : (
+          <>
+            {error && <div style={{ background: "#fef2f2", color: "#B91C1C", borderRadius: 6, padding: "10px 12px", fontSize: 14, marginBottom: 16 }}>{error}</div>}
+            <div style={{ marginBottom: 16 }}>
+              <label style={{ fontSize: 14, color: "#6B7B8D", display: "block", marginBottom: 5 }}>New password</label>
+              <input type="password" value={password} onChange={e => setPassword(e.target.value)}
+                placeholder="At least 8 characters"
+                style={{ width: "100%", padding: "10px 12px", background: "#FAF6EE", border: "1px solid #252c3a", borderRadius: 6, color: "#1A1A2E", fontSize: 15, boxSizing: "border-box" }} />
+            </div>
+            <div style={{ marginBottom: 24 }}>
+              <label style={{ fontSize: 14, color: "#6B7B8D", display: "block", marginBottom: 5 }}>Confirm password</label>
+              <input type="password" value={confirm} onChange={e => setConfirm(e.target.value)}
+                onKeyDown={e => e.key === "Enter" && handleReset()}
+                placeholder="Repeat password"
+                style={{ width: "100%", padding: "10px 12px", background: "#FAF6EE", border: "1px solid #252c3a", borderRadius: 6, color: "#1A1A2E", fontSize: 15, boxSizing: "border-box" }} />
+            </div>
+            <button onClick={handleReset} disabled={loading}
+              style={{ width: "100%", padding: "10px", background: loading ? "#8a7035" : "#C9A84C", color: "#fff", border: "none", borderRadius: 6, fontSize: 15, fontWeight: 700, cursor: loading ? "not-allowed" : "pointer" }}>
+              {loading ? "Updating…" : "Set New Password"}
+            </button>
+          </>
+        )}
+      </div>
+    </div>
+  );
+}
+
 function LoginScreen({ onLogin, darkMode }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -3458,7 +3527,7 @@ function LoginScreen({ onLogin, darkMode }) {
     if (!forgotEmail.trim()) { setForgotError("Please enter your email."); return; }
     setForgotLoading(true); setForgotError("");
     try {
-      await fetch(`${API_URL}/api/auth/forgot-password`, {
+      await fetch(`${API_URL}/api/forgot-password`, {
         method: "POST", headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email: forgotEmail.trim() })
       });
@@ -4718,6 +4787,8 @@ export default function App() {
     window.addEventListener("keydown", onKey);
     return () => { window.removeEventListener("keydown", onKey); clearTimeout(gTimer.current); };
   }, [currentUser]);
+const resetToken = new URLSearchParams(window.location.search).get("token");
+  if (resetToken) return <ResetPasswordScreen token={resetToken} darkMode={darkMode} onDone={() => window.history.replaceState({}, '', '/app')} />;
 
   if (!currentUser) return <LoginScreen onLogin={login} darkMode={darkMode} />;
 
