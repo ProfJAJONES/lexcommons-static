@@ -123,11 +123,12 @@ const ALL_PRODUCTS = [
   { id: "lawfirm",    label: "Law Firm Commons",    icon: "🏛️", url: "https://lawfirmcommons.com",          minLevel: 3, planned: true },
 ];
 
+function ssoUrl(url) {
+  try { const u = JSON.parse(localStorage.getItem("lc_user")); if (u && u.token) return url + "?sso_token=" + u.token; } catch(e) {}
+  return url;
+}
+
 function AppSwitcher({ role }) {
-  function ssoUrl(url) {
-    try { const u = JSON.parse(localStorage.getItem("lc_user")); if (u&&u.token) return url+"?sso_token="+u.token; } catch(e){}
-    return url;
-  }
   const [open, setOpen] = useState(false);
   const ref = useRef(null);
   const level = ROLES[role]?.level || 0;
