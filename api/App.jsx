@@ -4861,7 +4861,7 @@ const resetToken = new URLSearchParams(window.location.search).get("token");
 
 
   return (
-    <div style={{ display: "flex", minHeight: "100vh", background: "#0B1D3A", fontFamily: "Source Sans 3, Segoe UI, sans-serif", color: "#1A1A2E" }}>
+    <div style={{ display: "flex", minHeight: "100vh", background: darkMode ? "#0f1923" : "#F0EBE0", fontFamily: "Source Sans 3, Segoe UI, sans-serif", color: darkMode ? "#E8E4DC" : "#1A1A2E" }}>
 
       {/* Sidebar */}
       <div style={{ width: 220, background: "#0B1D3A", borderRight: "1px solid #1e2432", display: "flex", flexDirection: "column", flexShrink: 0 }}>
@@ -4963,7 +4963,7 @@ const resetToken = new URLSearchParams(window.location.search).get("token");
       )}
 
       {/* Main */}
-      <div style={{ flex: 1, overflow: "auto" }}>
+      <div style={{ flex: 1, overflow: "auto", background: darkMode ? "#0f1923" : "#F0EBE0" }}>
         <div style={{ padding: "28px 32px", maxWidth: 1100 }}>
           {page === "dashboard" && <Dashboard currentUser={currentUser} />}
           {page === "sites"     && <SitesPage currentRole={role} />}
