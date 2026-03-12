@@ -115,7 +115,7 @@ const StatusDot = ({ live }) => (
 const ALL_PRODUCTS = [
   { id: "lawschool",  label: "Law School Commons", icon: "📚", url: "https://lawschoolcommons.com",        minLevel: 1 },
   { id: "cite",       label: "Cite Commons",        icon: "§",  url: "https://cite.lexcommons.org",         minLevel: 1 },
-  { id: "admin",      label: "Admin Commons",       icon: "⚙️", url: "https://ops.lexcommons.org",          minLevel: 3 },
+  { id: "admin",      label: "Admin Commons",       icon: "⚙️", url: "https://admin.lexcommons.org",        minLevel: 3 },
   { id: "classroom",  label: "Classroom Commons",   icon: "🎓", url: "https://classroom.lexcommons.org",    minLevel: 2 },
   { id: "faculty",    label: "Faculty Commons",     icon: "👩‍🏫", url: "https://faculty.lexcommons.org",      minLevel: 2 },
   { id: "clinic",     label: "Clinic Commons",      icon: "⚖️", url: "https://clinic.lexcommons.org",       minLevel: 2 },
@@ -124,6 +124,10 @@ const ALL_PRODUCTS = [
 ];
 
 function AppSwitcher({ role }) {
+  function ssoUrl(url) {
+    try { const u = JSON.parse(localStorage.getItem("lc_user")); if (u&&u.token) return url+"?sso_token="+u.token; } catch(e){}
+    return url;
+  }
   const [open, setOpen] = useState(false);
   const ref = useRef(null);
   const level = ROLES[role]?.level || 0;
@@ -166,7 +170,7 @@ function AppSwitcher({ role }) {
             {ALL_PRODUCTS.map(p => {
               const accessible = level >= p.minLevel && !p.planned;
               return (
-                <a key={p.id} href={accessible ? p.url : undefined}
+                <a key={p.id} href={accessible ? ssoUrl(p.url) : undefined}
                   target={accessible ? "_blank" : undefined}
                   rel="noopener noreferrer"
                   onClick={!accessible ? e => e.preventDefault() : undefined}
@@ -266,7 +270,7 @@ function Dashboard({ currentUser }) {
             const level = ROLES[currentUser.role]?.level || 0;
             const accessible = level >= p.minLevel && !p.planned;
             return (
-              <a key={p.id} href={accessible ? p.url : undefined}
+              <a key={p.id} href={accessible ? ssoUrl(p.url) : undefined}
                 target={accessible ? "_blank" : undefined}
                 rel="noopener noreferrer"
                 onClick={!accessible ? e => e.preventDefault() : undefined}
